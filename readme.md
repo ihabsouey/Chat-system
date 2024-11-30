@@ -49,23 +49,47 @@ This is a simple chat system project consisting of a back-end RESTful API built 
 ### Back-End
 
 1. Navigate to the `back/` folder:
+
    ```bash
    cd back
    ```
+
+   ```bash
    python -m venv env
+   ```
+
+   ```bash
    source env/bin/activate # For Linux/Mac
    env\Scripts\activate # For Windows
+   ```
+
+   ```bash
    pip install -r requirements.txt
+   ```
+
+   ```bash
    uvicorn main:app --reload
+   ```
+
    The back-end server will be available at http://127.0.0.1:8000.
 
 ### Front-End
 
 1. Navigate to the front/ folder
-   cd front
-   npm install
-   npm start
-   http://localhost:3000
+
+```bash
+  cd front
+```
+
+```bash
+    npm install
+```
+
+```bash
+    npm start
+```
+
+http://localhost:3000
 
 ### How to Use
 
@@ -77,3 +101,7 @@ This is a simple chat system project consisting of a back-end RESTful API built 
 ### Testing
 
 API Testing: http://localhost:8000/docs
+
+```
+
+```

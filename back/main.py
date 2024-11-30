@@ -1,3 +1,4 @@
+import random
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -27,8 +28,20 @@ async def chat_endpoint(chat: ChatHistory):
         if chat.messages[i].role == chat.messages[i + 1].role:
             raise HTTPException(status_code=400, detail="Invalid chat history")
     
-    # Generate static agent response
-    return {"reply": "Thank you for your message! This is a static reply."}
+    user_message = chat.messages[-1].content.lower()
+    print(f"User message: {user_message}")
+
+    greetings = ["Hi there!", "Hello!", "Hey!"]
+    thank_you_responses = ["You're welcome!", "Glad to be of help!", "My pleasure!"]
+
+    if "hi" in user_message or "hello" in user_message:
+        reply = random.choice(greetings)
+    elif "thank you" in user_message:
+        reply = random.choice(thank_you_responses)
+    else:
+        reply = "How can I assist you further?"
+
+    return {"reply": reply}
 
 if __name__ == "__main__":
     import uvicorn

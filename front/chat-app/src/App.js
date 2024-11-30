@@ -24,8 +24,6 @@ const App = () => {
 
             // Réponse du backend
             const data = await response.json();
-            console.log(data);
-            console.log(chatHistory);
             setChatHistory([...updatedHistory, { role: "agent", content: data.reply }]);
             addResponseMessage(data.reply);
         } catch (error) {
@@ -38,6 +36,9 @@ const App = () => {
         <div>
           
             <Widget handleNewUserMessage={handleNewUserMessage} 
+            title="Chatbot"
+            subtitle="Welcome to the chatbot"
+            
             />
         </div>
     );

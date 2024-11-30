@@ -1,9 +1,18 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 
 app = FastAPI()
 
+# Configuration CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Remplacez par ["http://localhost:3000"] pour plus de sécurité
+    allow_credentials=True,
+    allow_methods=["*"],  # Autorise toutes les méthodes HTTP (POST, GET, OPTIONS, etc.)
+    allow_headers=["*"],  # Autorise tous les en-têtes
+)
 class Message(BaseModel):
     role: str  # 'user' or 'agent'
     content: str

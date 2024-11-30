@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { addResponseMessage, Widget } from 'react-chat-widget';
+import 'react-chat-widget/lib/styles.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    // Hook pour gérer l'historique des messages
+    const [chatHistory, setChatHistory] = useState([]);
+
+    // Fonction appelée à chaque nouveau message utilisateur
+    const handleNewUserMessage = async (message) => {
+        // Mise à jour locale de l'historique des messages
+        const updatedHistory = [...chatHistory, { role: "user", content: message }];
+
+        try {
+            // Envoi de l'historique au backend
+            const response = await fetch("http://127.0.0.1:8000/chat/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ messages: updatedHistory }),
+            });
+
+            // Vérification si la requête a réussi
+            if (!response.ok) throw new Error("Invalid chat history");
+
+            // Réponse du backend
+            const data = await response.json();
+            console.log(data);
+            console.log(chatHistory);
+            setChatHistory([...updatedHistory, { role: "agent", content: data.reply }]);
+            addResponseMessage(data.reply);
+        } catch (error) {
+            console.error("Error:", error.message);
+        }
+    };
+
+    // Affichage du composant React-Chat-Widget
+    return (
+        <div>
+          
+            <Widget handleNewUserMessage={handleNewUserMessage} 
+            />
+        </div>
+    );
+};
 
 export default App;

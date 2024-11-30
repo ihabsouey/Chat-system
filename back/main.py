@@ -28,8 +28,8 @@ async def chat_endpoint(chat: ChatHistory):
         if chat.messages[i].role == chat.messages[i + 1].role:
             raise HTTPException(status_code=400, detail="Invalid chat history")
     
+    # Generate response based on the last message
     user_message = chat.messages[-1].content.lower()
-    print(f"User message: {user_message}")
 
     greetings = ["Hi there!", "Hello!", "Hey!"]
     thank_you_responses = ["You're welcome!", "Glad to be of help!", "My pleasure!"]

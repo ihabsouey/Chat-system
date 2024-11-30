@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { addResponseMessage, Widget } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
+import './App.css';
 
 const App = () => {
     // Hook pour gérer l'historique des messages
@@ -33,7 +34,7 @@ const App = () => {
 
     // Affichage du composant React-Chat-Widget
     return (
-        <div>
+        <div className="background-container">
           
             <Widget handleNewUserMessage={handleNewUserMessage} 
             title="Chatbot"

@@ -16,16 +16,8 @@ This is a simple chat system project consisting of a back-end RESTful API built 
 
 ## Project Structure
 
-├── front/chat-app # Front-end React application
-│ ├── src/
-│ │ ├── App.js # Main component for the chat system
-│ │ ├── App.css # Styling for the chat interface
-│ │ └── index.js # Entry point for the React app
-│ └── package.json # Dependencies for the React app
-├── back/ # Back-end FastAPI server
-│ ├── main.py # Main FastAPI application
-│ ├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+![image](https://github.com/user-attachments/assets/b753af39-0ceb-4204-879b-1610fcad0e12)
+
 
 ---
 

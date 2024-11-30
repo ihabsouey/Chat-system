@@ -94,6 +94,3 @@ http://localhost:3000
 
 API Testing: http://localhost:8000/docs
 
-```
-
-```
